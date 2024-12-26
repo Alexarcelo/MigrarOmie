@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
 # Instale pacotes de localidade e o locale-gen
-RUN apt-get update && apt-get install -y locales
+RUN apt-get update && apt-get install -y apt-utils locales
 
 # Gera a localidade 'pt_BR.UTF-8'
 RUN sed -i '/pt_BR.UTF-8/s/^# //g' /etc/locale.gen && \
@@ -22,6 +22,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copie todo o conteúdo do diretório local para o contêiner
 COPY . .
 
-EXPOSE 8091
+EXPOSE 8090
 
-CMD ["streamlit", "run", "app.py", "--server.port=8091"]
+CMD ["streamlit", "run", "app.py", "--server.port=8090", "--server.enableCORS=false"]
