@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.9-slim
 
 # Instale pacotes de localidade e o locale-gen
 RUN apt-get update && apt-get install -y locales
@@ -24,4 +24,4 @@ COPY . .
 
 EXPOSE 8090
 
-CMD ["streamlit", "run", "app.py", "--server.port=8090"]
+CMD ["streamlit", "run", "app.py", "--server.port=8090", "--server.enableCORS=false"]
